@@ -2,7 +2,6 @@ import React from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
 import SectionHeader from "./section-header";
 import Image from "next/image";
-import { title } from "process";
 import {
   BookOpen,
   Bus,

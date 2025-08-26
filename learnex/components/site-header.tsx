@@ -19,14 +19,9 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 import {
-  Code,
-  Book,
-  PieChart,
   DollarSign,
-  Fingerprint,
   Bell,
   Menu,
-  X,
   Users,
   GraduationCap,
   MessageSquare,
