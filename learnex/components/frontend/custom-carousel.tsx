@@ -4,19 +4,19 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 
 const carouselItems = [
   {
-    image: "/images/signup.webp",
-    title: "Join Our Network,",
-    subtitle: "Transform Healthcare",
+    image: "/images/slide-1.jpg",
+    title: "Connect & Collaborate,",
+    subtitle: "Build Future Leaders",
   },
   {
-    image: "/images/doctor.webp",
-    title: "Empower Patients,",
-    subtitle: "Anytime, Anywhere",
+    image: "/images/slide-2.jpg",
+    title: "Data-Driven Decisions,",
+    subtitle: "Better Outcomes",
   },
   {
-    image: "/images/hero.webp",
-    title: "Advance Your Practice,",
-    subtitle: "With Telemedicine",
+    image: "/images/slide-3.jpg",
+    title: "Access Anywhere,",
+    subtitle: "Stay Connected Always",
   },
 ];
 
@@ -39,7 +39,7 @@ export default function CustomCarousel() {
   }, []);
 
   return (
-    <div className="relative w-full h-screen bg-purple-900 rounded-l-lg overflow-hidden">
+    <div className="relative w-full h-screen bg-black overflow-hidden">
       <div className="absolute inset-0">
         {carouselItems.map((item, index) => (
           <div
@@ -53,15 +53,15 @@ export default function CustomCarousel() {
               alt={`Slide ${index + 1}`}
               className="object-cover w-full h-full"
             />
-            <div className="absolute inset-0 bg-purple-900/50" />
+            <div className="absolute inset-0 bg-black-900/50" />
           </div>
         ))}
       </div>
       <div className="absolute inset-x-0 bottom-0 top-0 flex flex-col items-center justify-end p-6 text-white">
-        <h2 className="text-3xl font-bold mb-2">
+        <h2 className="text-3xl font-bold mb-2 text-black">
           {carouselItems[currentSlide].title}
         </h2>
-        <p className="text-xl mb-8">{carouselItems[currentSlide].subtitle}</p>
+        <p className="text-xl text-black mb-8">{carouselItems[currentSlide].subtitle}</p>
         <div className="flex space-x-2 mb-4">
           {carouselItems.map((_, index) => (
             <button
