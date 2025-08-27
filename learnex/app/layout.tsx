@@ -1,11 +1,15 @@
 import type { Metadata } from "next";
 import { Rethink_Sans } from 'next/font/google'
+import { NextSSRPlugin } from "@uploadthing/react/next-ssr-plugin";
+import { extractRouterConfig } from "uploadthing/server";
 
 const rethinkSans = Rethink_Sans({
   subsets: ['latin'],
   display: 'swap',
 })
 import "./globals.css";
+import { ourFileRouter } from "./api/uploadthing/core";
+import { Toaster } from "react-hot-toast";
 
 export const metadata: Metadata = {
   title: "LearneX",
@@ -22,6 +26,10 @@ export default function RootLayout({
       <body
         className={rethinkSans.className}
       >
+        <Toaster position="top-center" reverseOrder={false} />
+        <NextSSRPlugin
+          routerConfig={extractRouterConfig(ourFileRouter)}
+        />
         {children}
       </body>
     </html>
