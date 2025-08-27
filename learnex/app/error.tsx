@@ -26,7 +26,7 @@ export default function Error() {
           </h1>
           
           <p className="text-gray-600 mb-8 leading-relaxed">
-            Something went wrong on our end. We're working to fix the issue. Please try again later.
+            Something went wrong on our end. We&apos;re working to fix the issue. Please try again later.
           </p>
 
           {/* Action Buttons */}
