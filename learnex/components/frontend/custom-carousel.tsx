@@ -39,7 +39,7 @@ export default function CustomCarousel() {
   }, []);
 
   return (
-    <div className="relative w-full h-screen bg-black overflow-hidden">
+    <div className="relative w-full h-screen bg-black-900 overflow-hidden">
       <div className="absolute inset-0">
         {carouselItems.map((item, index) => (
           <div
@@ -61,7 +61,7 @@ export default function CustomCarousel() {
         <h2 className="text-3xl font-bold mb-2 text-black">
           {carouselItems[currentSlide].title}
         </h2>
-        <p className="text-xl text-black mb-8">{carouselItems[currentSlide].subtitle}</p>
+        <p className="text-black text-xl mb-8">{carouselItems[currentSlide].subtitle}</p>
         <div className="flex space-x-2 mb-4">
           {carouselItems.map((_, index) => (
             <button

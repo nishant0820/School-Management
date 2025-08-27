@@ -7,7 +7,7 @@ import SubmitButton from "@/components/FormInputs/SubmitButton";
 import CustomCarousel from "../custom-carousel";
 import Logo from "@/components/logo";
 import PasswordInput from "@/components/FormInputs/PasswordInput";
-import { Lock, Mail } from "lucide-react";
+import { Lock, LogIn, Mail } from "lucide-react";
 export type RegisterInputProps = {
   fullName: string;
   email: string;
@@ -29,11 +29,11 @@ export default function Login() {
   return (
     <div className="w-full lg:grid h-screen lg:min-h-[600px] lg:grid-cols-2 relative ">
       <div className="flex items-center justify-center py-12">
-        <div className="mx-auto grid w-[350px] gap-6">
-          <div className="absolute top-5 left-5">
+        <div className="mx-auto grid w-[350px] gap-6 mt-10 md:mt-0">
+          <div className="absolute left-1/3 top-10 md:top-5 md:left-5">
             <Logo />
           </div>
-          <div className="grid gap-2 text-center">
+          <div className="grid gap-2 text-center mt-10 md:mt-0">
             <h1 className="text-3xl font-bold">Login to Your Account</h1>
           </div>
           <form className="grid gap-4" onSubmit={handleSubmit(onSubmit)}>
@@ -62,14 +62,9 @@ export default function Login() {
               title="Signin"
               loading={isLoading}
               loadingTitle="Signing in please wait..."
+              buttonIcon={LogIn}
             />
           </form>
-          {/*<div className="mt-4 text-center text-sm">
-            Already have an account?{" "}
-            <Link href="/login" className="underline">
-              Login
-            </Link>
-          </div>*/}
         </div>
       </div>
       <div className="hidden bg-muted lg:block relative">
