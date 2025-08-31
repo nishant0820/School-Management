@@ -12,7 +12,6 @@ import {
   DropdownMenuItem,
   DropdownMenuLabel,
   DropdownMenuSeparator,
-  DropdownMenuShortcut,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import {
@@ -20,10 +19,8 @@ import {
   SidebarContent,
   SidebarFooter,
   SidebarGroup,
-  SidebarGroupLabel,
   SidebarHeader,
   SidebarMenu,
-  SidebarMenuAction,
   SidebarMenuButton,
   SidebarMenuItem,
   SidebarMenuSub,
@@ -32,124 +29,259 @@ import {
   SidebarRail,
 } from "@/components/ui/sidebar";
 import {
-  AudioWaveform,
   BadgeCheck,
+  BarChart2,
   Bell,
   BookOpen,
-  Bot,
+  Bus,
   ChevronRight,
   ChevronsUpDown,
-  Command,
   CreditCard,
-  Folder,
-  Forward,
-  Frame,
-  GalleryVerticalEnd,
+  DollarSign,
+  GraduationCap,
+  LayoutDashboard,
   LogOut,
-  MoreHorizontal,
-  PieChart,
-  Plus,
+  MessageSquare,
   Settings2,
   Sparkles,
-  SquareTerminal,
-  Trash2,
+  UserCog,
+  Users,
 } from "lucide-react";
 import React from "react";
 
-
 export default function AppSidebar() {
   const user = {
-    name: "shadcn",
-    email: "m@example.com",
-    avatar: "/avatars/shadcn.jpg"
-  }
-  const navMain = [
+    name: "nishant",
+    email: "nishant@gmail.com",
+    avatar: "/avatars/shadcn.jpg",
+  };
+
+  const sidebarLinks = [
     {
-      title: "Playground",
-      url: "#",
-      icon: SquareTerminal,
+      title: "Dashboard",
+      url: "/dashboard",
+      icon: LayoutDashboard,
       isActive: true,
       items: [
         {
-          title: "History",
-          url: "#",
-        },
-        {
-          title: "Starred",
-          url: "#",
-        },
-        {
-          title: "Settings",
-          url: "#",
+          title: "Overview",
+          url: "/dashboard/overview",
         },
       ],
     },
     {
-      title: "Models",
-      url: "#",
-      icon: Bot,
+      title: "Student Management",
+      url: "/students",
+      icon: Users,
       items: [
         {
-          title: "Genesis",
-          url: "#",
+          title: "Student Directory",
+          url: "/students/directory",
         },
         {
-          title: "Explorer",
-          url: "#",
+          title: "Enrollment",
+          url: "/students/enrollment",
         },
         {
-          title: "Quantum",
-          url: "#",
+          title: "Attendance",
+          url: "/students/attendance",
+        },
+        {
+          title: "Performance",
+          url: "/students/performance",
         },
       ],
     },
     {
-      title: "Documentation",
-      url: "#",
+      title: "Academics",
+      url: "/academics",
+      icon: GraduationCap,
+      items: [
+        {
+          title: "Curriculum",
+          url: "/academics/curriculum",
+        },
+        {
+          title: "Timetable",
+          url: "/academics/timetable",
+        },
+        {
+          title: "Examinations",
+          url: "/academics/examinations",
+        },
+        {
+          title: "Assignments",
+          url: "/academics/assignments",
+        },
+        {
+          title: "Report Cards",
+          url: "/academics/reports",
+        },
+      ],
+    },
+    {
+      title: "Staff Management",
+      url: "/staff",
+      icon: UserCog,
+      items: [
+        {
+          title: "Staff Directory",
+          url: "/staff/directory",
+        },
+        {
+          title: "Attendance",
+          url: "/staff/attendance",
+        },
+        {
+          title: "Leave Management",
+          url: "/staff/leave-management",
+        },
+        {
+          title: "Performance",
+          url: "/staff/performance",
+        },
+      ],
+    },
+    {
+      title: "Communication",
+      url: "/communication",
+      icon: MessageSquare,
+      items: [
+        {
+          title: "Messages",
+          url: "/communication/messages",
+        },
+        {
+          title: "Announcements",
+          url: "/communication/announcements",
+        },
+        {
+          title: "Notice Board",
+          url: "/communication/notices",
+        },
+        {
+          title: "Emergency Alerts",
+          url: "/communication/alerts",
+        },
+      ],
+    },
+    {
+      title: "Finance",
+      url: "/finance",
+      icon: DollarSign,
+      items: [
+        {
+          title: "Fee Management",
+          url: "/finance/fees",
+        },
+        {
+          title: "Payments",
+          url: "/finance/payments",
+        },
+        {
+          title: "Scholarships",
+          url: "/finance/scholarships",
+        },
+        {
+          title: "Reports",
+          url: "/finance/reports",
+        },
+      ],
+    },
+    {
+      title: "Transport",
+      url: "/transport",
+      icon: Bus,
+      items: [
+        {
+          title: "Routes",
+          url: "/transport/routes",
+        },
+        {
+          title: "Tracking",
+          url: "/transport/tracking",
+        },
+        {
+          title: "Drivers",
+          url: "/transport/drivers",
+        },
+        {
+          title: "Maintenance",
+          url: "/transport/maintenance",
+        },
+      ],
+    },
+    {
+      title: "Resources",
+      url: "/resources",
       icon: BookOpen,
       items: [
         {
-          title: "Introduction",
-          url: "#",
+          title: "Library",
+          url: "/resources/library",
         },
         {
-          title: "Get Started",
-          url: "#",
+          title: "Inventory",
+          url: "/resources/inventory",
         },
         {
-          title: "Tutorials",
-          url: "#",
+          title: "Facilities",
+          url: "/resources/facilities",
         },
         {
-          title: "Changelog",
-          url: "#",
+          title: "Assets",
+          url: "/resources/assets",
+        },
+      ],
+    },
+    {
+      title: "Reports & Analytics",
+      url: "/reports",
+      icon: BarChart2,
+      items: [
+        {
+          title: "Academic Reports",
+          url: "/reports/academic",
+        },
+        {
+          title: "Financial Reports",
+          url: "/reports/financial",
+        },
+        {
+          title: "Custom Reports",
+          url: "/reports/custom",
+        },
+        {
+          title: "Analytics Dashboard",
+          url: "/reports/analytics",
         },
       ],
     },
     {
       title: "Settings",
-      url: "#",
+      url: "/settings",
       icon: Settings2,
       items: [
         {
-          title: "General",
-          url: "#",
+          title: "School Profile",
+          url: "/settings/school-profile",
         },
         {
-          title: "Team",
-          url: "#",
+          title: "User Management",
+          url: "/settings/user-management",
         },
         {
-          title: "Billing",
-          url: "#",
+          title: "System Settings",
+          url: "/settings/system",
         },
         {
-          title: "Limits",
-          url: "#",
+          title: "Backup & Security",
+          url: "/settings/backup-security",
         },
       ],
     },
-  ]
+  ];
+
   return (
     <Sidebar collapsible="icon">
       <SidebarHeader>
@@ -162,7 +294,7 @@ export default function AppSidebar() {
       <SidebarContent>
         <SidebarGroup>
           <SidebarMenu>
-            {navMain.map((item) => (
+            {sidebarLinks.map((item) => (
               <Collapsible
                 key={item.title}
                 asChild
@@ -210,9 +342,7 @@ export default function AppSidebar() {
                     <AvatarFallback className="rounded-lg">CN</AvatarFallback>
                   </Avatar>
                   <div className="grid flex-1 text-left text-sm leading-tight">
-                    <span className="truncate font-semibold">
-                      {user.name}
-                    </span>
+                    <span className="truncate font-semibold">{user.name}</span>
                     <span className="truncate text-xs">{user.email}</span>
                   </div>
                   <ChevronsUpDown className="ml-auto size-4" />
@@ -227,19 +357,14 @@ export default function AppSidebar() {
                 <DropdownMenuLabel className="p-0 font-normal">
                   <div className="flex items-center gap-2 px-1 py-1.5 text-left text-sm">
                     <Avatar className="h-8 w-8 rounded-lg">
-                      <AvatarImage
-                        src={user.avatar}
-                        alt={user.name}
-                      />
+                      <AvatarImage src={user.avatar} alt={user.name} />
                       <AvatarFallback className="rounded-lg">CN</AvatarFallback>
                     </Avatar>
                     <div className="grid flex-1 text-left text-sm leading-tight">
                       <span className="truncate font-semibold">
                         {user.name}
                       </span>
-                      <span className="truncate text-xs">
-                        {user.email}
-                      </span>
+                      <span className="truncate text-xs">{user.email}</span>
                     </div>
                   </div>
                 </DropdownMenuLabel>
