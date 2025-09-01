@@ -1,11 +1,11 @@
 "use client";
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
-import TextInput from "../FormInputs/TextInput";
-import PasswordInput from "../FormInputs/PasswordInput";
 import SubmitButton from "../FormInputs/SubmitButton";
-import { Mail, Send } from "lucide-react";
+import { Send } from "lucide-react";
 import TextArea from "../FormInputs/TextAreaInput";
+import PhoneInput from "../FormInputs/PhoneInput";
+import TextInput from "../FormInputs/TextInput";
 
 export type RegisterInputProps = {
   fullName: string;
@@ -31,9 +31,10 @@ const ContactUs: React.FC = () => {
       <div className="max-w-6xl mx-auto">
         <div className="flex items-center justify-center">
           <div className="col-span-2 bg-white p-6 rounded-2xl shadow">
-            <h3 className="text-2xl text-center font-semibold mb-4">
-              Sign up to get your school onboard
+            <h3 className="text-2xl text-center font-semibold">
+              Tell us about your institution and requirements
             </h3>
+            <p className="text-muted-foreground text-sm text-center px-4 py-2 mb-4 max-w-xl mx-auto">Our team will reach you within 24 hours to schedule a personalized demo and discuss your specific needs</p>
             <form className="grid gap-4" onSubmit={handleSubmit(onSubmit)}>
               <TextInput
                 label="Full Name"
@@ -52,12 +53,13 @@ const ContactUs: React.FC = () => {
                   errors={errors}
                   placeholder="johndoe@gmail.com"
                 />
-                <TextInput
+                <PhoneInput
                   label="Phone"
                   register={register}
                   name="phone"
                   errors={errors}
                   placeholder="+1234567890"
+                  toolTipText="Enter your phone number with country code"
                 />
               </div>
 

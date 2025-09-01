@@ -2,7 +2,7 @@
 import { useForm } from "react-hook-form";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import TextInput from "@/components/FormInputs/TextInput";
+import TextInput from "@/components/FormInputs/PhoneInput";
 import SubmitButton from "@/components/FormInputs/SubmitButton";
 import CustomCarousel from "../custom-carousel";
 import Logo from "@/components/logo";
