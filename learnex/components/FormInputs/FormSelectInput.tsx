@@ -36,6 +36,7 @@ export default function FormSelectInput({
           onChange={(item) => setOption(item)}
           options={options}
           placeholder={label}
+          
         />
         {href && toolTipText && (
           <AddNewButton toolTipText={toolTipText} href={href} />

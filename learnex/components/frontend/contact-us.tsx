@@ -6,24 +6,94 @@ import { Send } from "lucide-react";
 import TextArea from "../FormInputs/TextAreaInput";
 import PhoneInput from "../FormInputs/PhoneInput";
 import TextInput from "../FormInputs/TextInput";
+import FormSelectInput from "../FormInputs/FormSelectInput";
+import countries from "@/countries";
 
-export type RegisterInputProps = {
+const removeLeadingZero = (phoneNumber: string) => {
+  const numberStr = phoneNumber.toString();
+  if (numberStr.startsWith("0")) {
+    return numberStr.substring(1);
+  }
+  return numberStr;
+};
+
+export type ContactProps = {
   fullName: string;
   email: string;
   password: string;
   phone: string;
+  school: string;
+  country: string;
+  schoolPage: string;
+  students: number;
+  role: string;
+  media: string;
+  features: string;
 };
 
 const ContactUs: React.FC = () => {
   const [isLoading, setIsLoading] = useState(false);
+  const [phoneCode, setPhoneCode] = useState("");
+  const initialCountryCode = "IN";
+  const initialCountry = countries.find(
+    (item) => item.countryCode === initialCountryCode
+  );
+  const [selectedCountry, setSelectedCountry] = useState<any>(initialCountry);
   const {
     register,
     handleSubmit,
     reset,
     formState: { errors },
-  } = useForm<RegisterInputProps>();
-  async function onSubmit(data: RegisterInputProps) {
-    console.log(data);
+  } = useForm<ContactProps>();
+  const roles = [
+    {
+      label: "Principal/Leadership/Management",
+      value: "principal"
+    },
+    {
+      label: "School Administrator",
+      value: "administrator"
+    },
+    {
+      label: "Head Teacher",
+      value: "head_teacher"
+    },
+    {
+      label: "Teacher/Parent/Student",
+      value: "teacher/parent/student"
+    },
+    {
+      label: "Consultant/Reseller",
+      value: "consultant/reseller"
+    },
+    {
+      label: "Other",
+      value: "other"
+    }
+  ]
+  const media = [
+    {
+      label: "Blog",
+      value: "blog"
+    },
+    {
+      label: "Google",
+      value: "google"
+    },
+    {
+      label: "Friends",
+      value: "friends"
+    },
+    {
+      label: "Other",
+      value: "other"
+    }
+  ]
+  const [selectedRole, setSelectedRole] = useState<any>(null);
+  const [selectedMedia, setSelectedMedia] = useState<any>(media[0]);
+  async function onSubmit(data: ContactProps) {
+    data.phone = removeLeadingZero(data.phone);
+    const phoneNumber = `${phoneCode}${data.phone}`;
   }
 
   return (
@@ -34,7 +104,10 @@ const ContactUs: React.FC = () => {
             <h3 className="text-2xl text-center font-semibold">
               Tell us about your institution and requirements
             </h3>
-            <p className="text-muted-foreground text-sm text-center px-4 py-2 mb-4 max-w-xl mx-auto">Our team will reach you within 24 hours to schedule a personalized demo and discuss your specific needs</p>
+            <p className="text-muted-foreground text-sm text-center px-4 py-2 mb-4 max-w-xl mx-auto">
+              Our team will reach you within 24 hours to schedule a personalized
+              demo and discuss your specific needs
+            </p>
             <form className="grid gap-4" onSubmit={handleSubmit(onSubmit)}>
               <TextInput
                 label="Full Name"
@@ -54,12 +127,13 @@ const ContactUs: React.FC = () => {
                   placeholder="johndoe@gmail.com"
                 />
                 <PhoneInput
-                  label="Phone"
                   register={register}
-                  name="phone"
                   errors={errors}
-                  placeholder="+1234567890"
-                  toolTipText="Enter your phone number with country code"
+                  label="Phone"
+                  name="phone"
+                  toolTipText="Select Code and write your number"
+                  placeholder="Phone Number"
+                  setPhoneCode={setPhoneCode}
                 />
               </div>
 
@@ -69,14 +143,13 @@ const ContactUs: React.FC = () => {
                   register={register}
                   name="school"
                   errors={errors}
-                  placeholder="D.M.S.S.S."
+                  placeholder="Delhi Public School"
                 />
-                <TextInput
-                  label="Country"
-                  register={register}
-                  name="country"
-                  errors={errors}
-                  placeholder="India"
+                <FormSelectInput
+                  label="Countries"
+                  options={countries}
+                  option={selectedCountry}
+                  setOption={setSelectedCountry}
                 />
               </div>
 
@@ -98,35 +171,28 @@ const ContactUs: React.FC = () => {
               </div>
 
               <div className="grid md:grid-cols-2 gap-4">
-                <TextInput
-                  label="Your Role"
-                  register={register}
-                  name="role"
-                  errors={errors}
-                  placeholder="Principal"
+              <FormSelectInput
+                  label="Roles"
+                  options={roles}
+                  option={selectedRole}
+                  setOption={setSelectedRole}
                 />
-                <TextInput
-                  label="Product Interest(Which features are you looking for?)"
-                  register={register}
-                  name="productInterest"
-                  errors={errors}
-                  placeholder="Premium"
+                <FormSelectInput
+                  label="How did you hear about us?"
+                  options={media}
+                  option={selectedMedia}
+                  setOption={setSelectedMedia}
                 />
+
               </div>
 
               <TextArea
-                label="Your Role"
+                label="Please share with us the key points you want to solve"
                 register={register}
-                name="role"
+                name="features"
                 errors={errors}
               />
-              <TextInput
-                label="How did you hear about us?"
-                register={register}
-                name="referral"
-                errors={errors}
-                placeholder="Instagram"
-              />
+              
 
               <SubmitButton
                 title="Submit"
