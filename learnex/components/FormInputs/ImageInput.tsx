@@ -32,10 +32,15 @@ export default function ImageInput({
           <UploadButton
             className="col-span-full"
             endpoint={endpoint}
-            onClientUploadComplete={(res) => {
+            appearance={{
+              button: "bg-black text-white px-4 py-2 rounded cursor-pointer",
+            }}
+            content={{
+              button: "Choose File"
+            }}
+            onClientUploadComplete={(res: Array<{ url: string }>) => {
               // Do something with the response
               console.log("Files: ", res);
-
               setImageUrl(res[0].url);
             }}
             onUploadError={(error: Error) => {
