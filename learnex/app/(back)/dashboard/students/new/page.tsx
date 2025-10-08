@@ -6,7 +6,7 @@ import BulkStudentForm from "@/components/dashboard/forms/students/bulk-student-
 
 export default function AdmissionsTabs() {
   return (
-    <div className="w-full max-w-6xl mx-auto p-6">
+    <div className="w-full max-w-5xl mx-auto p-6">
       <Tabs defaultValue="single" className="w-full">
         <TabsList className="grid w-full grid-cols-2 mb-8">
           <TabsTrigger
