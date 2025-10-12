@@ -1,5 +1,14 @@
 "use client";
 
+import { Button } from "@/components/ui/button";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
@@ -12,7 +21,6 @@ import toast from "react-hot-toast";
 import PasswordInput from "@/components/FormInputs/PasswordInput";
 import FormSelectInput from "@/components/FormInputs/FormSelectInput";
 import countries from "@/countries";
-import InfoBanner from "@/components/info-banner";
 
 export type SelectOptionProps = {
   label: string;
@@ -28,33 +36,63 @@ export type StudentProps = {
   password: string;
   imageUrl: string;
 };
-export default function SingleStudentForm({
+export default function ParentForm({
   editingId,
   initialData,
 }: SingleStudentFormProps) {
-  const parents = [
+  const relationships = [
     {
-      label: "John Doe",
-      value: "parent1",
+      label: "Mother",
+      value: "Mother",
     },
     {
-      label: "Allen Smith",
-      value: "parent2",
-    }
+      label: "Father",
+      value: "Father",
+    },
+    {
+      label: "Guardian",
+      value: "Guardian",
+    },
+    {
+      label: "Other",
+      value: "Other",
+    },
   ];
-  const [selectedParent, setSelectedParent] = useState<any>(null);
+  const [selectedRelationship, setSelectedRelationship] = useState<any>(
+    relationships[1]
+  );
 
-  const classes = [
+  const titles = [
     {
-      label: "Class 1",
-      value: "class1",
+      label: "Mr.",
+      value: "Mr",
     },
     {
-      label: "Class 2",
-      value: "class2",
-    }
+      label: "Mrs.",
+      value: "Mrs",
+    },
+    {
+      label: "Dr.",
+      value: "Dr",
+    },
   ];
-  const [selectedClass, setSelectedClass] = useState<any>(null);
+  const [selectedTitle, setSelectedTitle] = useState<any>(null);
+
+  const contactMethods = [
+    {
+      label: "Phone",
+      value: "Phone",
+    },
+    {
+      label: "Email",
+      value: "Email",
+    },
+    {
+      label: "Whatsapp",
+      value: "Whatsapp",
+    },
+  ];
+  const [selectedMethod, setSelectedMethod] = useState<any>(null);
 
   const streams = [
     {
@@ -64,7 +102,7 @@ export default function SingleStudentForm({
     {
       label: "Stream 2",
       value: "stream2",
-    }
+    },
   ];
   const [selectedStream, setSelectedStream] = useState<any>(null);
 
@@ -76,7 +114,7 @@ export default function SingleStudentForm({
     {
       label: "FEMALE",
       value: "female",
-    }
+    },
   ];
   const [selectedGender, setSelectedGender] = useState<any>(null);
 
@@ -92,7 +130,7 @@ export default function SingleStudentForm({
     {
       label: "Islam",
       value: "Islam",
-    }
+    },
   ];
   const [selectedReligion, setSelectedReligion] = useState<any>(null);
 
@@ -100,7 +138,8 @@ export default function SingleStudentForm({
   const initialCountry = countries.find(
     (item) => item.countryCode === initialCountryCode
   );
-  const [selectedNationality, setSelectedNationality] = useState<any>(initialCountry);
+  const [selectedNationality, setSelectedNationality] =
+    useState<any>(initialCountry);
 
   const {
     register,
@@ -153,72 +192,58 @@ export default function SingleStudentForm({
   return (
     <form className="" onSubmit={handleSubmit(saveStudent)}>
       <FormHeader
-        href="/students"
-        parent=""
-        title="Student"
+        href="/parents"
+        parent="users"
+        title="Parent"
         editingId={editingId}
         loading={loading}
       />
 
       <div className="grid grid-cols-12 gap-6 py-8">
-        
         <div className="lg:col-span-12 col-span-full space-y-3">
           <div className="grid gap-6">
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-3">
+              <FormSelectInput
+                label="Title"
+                options={titles}
+                option={selectedTitle}
+                setOption={setSelectedTitle}
+              />
               <TextInput
                 register={register}
                 errors={errors}
-                label="Student First Name"
+                label="First Name"
                 name="firstName"
               />
               <TextInput
                 register={register}
                 errors={errors}
-                label="Student Last Name"
+                label="Last Name"
                 name="lastName"
+              />
+            </div>
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-3">
+              <FormSelectInput
+                label="Relationship"
+                options={relationships}
+                option={selectedRelationship}
+                setOption={setSelectedRelationship}
               />
               <TextInput
                 register={register}
                 errors={errors}
-                label="Email"
-                name="email"
-                type="email"
-              />
-            </div>
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-3">
-              <FormSelectInput
-                label="Parent"
-                options={parents}
-                option={selectedParent}
-                setOption={setSelectedParent}
-                toolTipText="Add New Parent"
-                href="/dashboard/users/parents/new"
+                label="National ID / Passport"
+                name="NIN"
               />
               <FormSelectInput
-                label="Class"
-                options={classes}
-                option={selectedClass}
-                setOption={setSelectedClass}
-                toolTipText="Add New Class"
-                href="/dashboard/academics/classes/new"
-              />
-              <FormSelectInput
-                label="Stream"
-                options={streams}
-                option={selectedStream}
-                setOption={setSelectedStream}
-                toolTipText="Add New Stream"
-                href="/dashboard/academics/streams/new"
-              />
-            </div>
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-3">
-            <FormSelectInput
                 label="Gender"
                 options={genders}
                 option={selectedGender}
                 setOption={setSelectedGender}
                 isSearchable={false}
               />
+            </div>
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-3">
               <TextInput
                 register={register}
                 errors={errors}
@@ -226,16 +251,7 @@ export default function SingleStudentForm({
                 name="dob"
                 type="date"
               />
-              <PasswordInput
-                register={register}
-                errors={errors}
-                label="Student Password"
-                name="password"
-                toolTipText="Password will be used by student on the Student Portal"
-              />
-            </div>
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-3">
-            <TextInput
+              <TextInput
                 register={register}
                 errors={errors}
                 label="Phone"
@@ -248,77 +264,72 @@ export default function SingleStudentForm({
                 option={selectedNationality}
                 setOption={setSelectedNationality}
               />
-              <TextInput
-                register={register}
-                errors={errors}
-                label="State/Village"
-                name="state"
-              />
             </div>
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-3">
               <TextInput
                 register={register}
                 errors={errors}
-                label="Birth Certificate No."
-                name="BCN"
+                label="Email"
+                name="email"
+              />
+              <TextInput
+                register={register}
+                errors={errors}
+                label="Whatsapp No"
+                name="whatsappNo"
+                type="tel"
               />
               <FormSelectInput
-                label="Religion"
-                options={religions}
-                option={selectedReligion}
-                setOption={setSelectedReligion}
-              />
-              <TextInput
-                register={register}
-                errors={errors}
-                label="Roll No."
-                name="rollNo"
-              />
+                    label="Contact Method"
+                    options={contactMethods}
+                    option={selectedMethod}
+                    setOption={setSelectedMethod}
+                  />
             </div>
             <div className="grid md:grid-cols-2 gap-3">
-            <div className="">
-            <div className="grid gap-3">
-              <TextInput
-                register={register}
-                errors={errors}
-                label="Registration No."
-                name="regNo"
-              />
-              <TextInput
-                register={register}
-                errors={errors}
-                label="Admission Date"
-                name="admissionDate"
-              />
-            </div>
-            <div className="grid gap-3">
-              <TextArea
-                register={register}
-                errors={errors}
-                label="Address"
-                name="address"
-              />
-            </div>
-            </div>
-            <div className="grid">
-              <ImageInput
-                title="Student Profile Image"
-                imageUrl={imageUrl}
-                setImageUrl={setImageUrl}
-                endpoint="studentProfileImage"
-                className="object-contain"
-              />
-            </div>
+              <div className="">
+                <div className="grid gap-3">
+                  <PasswordInput
+                    register={register}
+                    errors={errors}
+                    label="Parent Portal Password"
+                    name="password"
+                  />
+                  <TextInput
+                    register={register}
+                    errors={errors}
+                    label="Occupation"
+                    name="occupation"
+                  />
+                </div>
+                <div className="grid gap-3">
+                  <TextArea
+                    register={register}
+                    errors={errors}
+                    label="Address"
+                    name="address"
+                  />
+                </div>
+              </div>
+              <div className="grid">
+                <ImageInput
+                  title="Parent Profile Image"
+                  imageUrl={imageUrl}
+                  setImageUrl={setImageUrl}
+                  endpoint="parentProfileImage"
+                  className="object-contain"
+                />
+              </div>
             </div>
           </div>
         </div>
       </div>
       <FormFooter
-        href="/students"
+        href="/parents"
         editingId={editingId}
         loading={loading}
-        title="Student"
-        parent=""
+        title="Parent"
+        parent="users"
       />
     </form>
   );

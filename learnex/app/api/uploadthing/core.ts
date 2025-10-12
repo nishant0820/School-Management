@@ -17,6 +17,12 @@ export const ourFileRouter = {
       return { uploadedBy: "Nishant Gupta" };
     }
   ),
+  parentProfileImage: f({ image: { maxFileSize: "1MB" } }).onUploadComplete(
+    async ({ metadata, file }) => {
+      console.log("file url", file.url);
+      return { uploadedBy: "Nishant Gupta" };
+    }
+  ),
   fileUploads: f({
     image: { maxFileSize: "1MB", maxFileCount: 4 },
     pdf: { maxFileSize: "1MB", maxFileCount: 4 },
