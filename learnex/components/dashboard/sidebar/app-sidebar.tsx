@@ -111,26 +111,27 @@ export default function AppSidebar() {
       title: "Academics",
       url: "/academics",
       icon: GraduationCap,
+      isActive: true,
       items: [
         {
-          title: "Curriculum",
-          url: "/academics/curriculum",
+          title: "Classes and Streams",
+          url: "/dashboard/academics/classes",
         },
         {
           title: "Timetable",
-          url: "/academics/timetable",
+          url: "/dashboard/academics/timetable",
         },
         {
           title: "Examinations",
-          url: "/academics/examinations",
+          url: "/dashboard/academics/examinations",
         },
         {
           title: "Assignments",
-          url: "/academics/assignments",
+          url: "/dashboard/academics/assignments",
         },
         {
           title: "Report Cards",
-          url: "/academics/reports",
+          url: "/dashboard/academics/reports",
         },
       ],
     },

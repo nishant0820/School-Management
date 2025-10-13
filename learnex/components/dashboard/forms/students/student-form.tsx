@@ -200,7 +200,7 @@ export default function SingleStudentForm({
                 option={selectedClass}
                 setOption={setSelectedClass}
                 toolTipText="Add New Class"
-                href="/dashboard/academics/classes/new"
+                href="/dashboard/academics/classes"
               />
               <FormSelectInput
                 label="Stream"
@@ -208,7 +208,7 @@ export default function SingleStudentForm({
                 option={selectedStream}
                 setOption={setSelectedStream}
                 toolTipText="Add New Stream"
-                href="/dashboard/academics/streams/new"
+                href="/dashboard/academics/classes"
               />
             </div>
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-3">
