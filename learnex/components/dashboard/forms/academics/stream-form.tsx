@@ -19,7 +19,7 @@ export type ClassProps = {
   name: string;
 };
 
-export default function ClassForm({
+export default function StreamForm({
   userId,
   initialContent,
   editingId,
@@ -69,9 +69,9 @@ export default function ClassForm({
                 <Pencil className="w-4 h-4" />
               </button>
             ) : (
-              <Button variant="ghost" size="icon" className="h-8 w-8">
-                <Plus className="h-4 w-4" />
-                <span className="sr-only">Add Class</span>
+              <Button variant="outline" size="sm" className="h-8">
+                <Plus className="h-4 w-4 mr-2" />
+                Add Section
               </Button>
             )}
           </DialogTrigger>
@@ -79,7 +79,7 @@ export default function ClassForm({
           <DialogContent>
             <DialogHeader>
               <DialogTitle>
-                {editingId ? "Edit Class" : "Add New Class"}
+                {editingId ? "Edit Stream" : "Add New Stream"}
               </DialogTitle>
             </DialogHeader>
             <form className="" onSubmit={handleSubmit(saveFolder)}>
